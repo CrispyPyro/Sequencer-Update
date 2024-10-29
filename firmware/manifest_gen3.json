@@ -1,5 +1,5 @@
 {
-    "name": "gen3 manifest",
+    "name": "Stepper/Sequencer Gen 3 (date)",
     "builds": [
       {
         "chipFamily": "ESP32",
@@ -8,7 +8,7 @@
           { "path": "gen3/bootloader.bin", "offset": 32768 },
           { "path": "gen3/partitions.bin", "offset": 57344 },
           { "path": "gen3/boot_app0.bin", "offset": 65536 },
-          { "path": "gen3/firmware.bin"}
+          { "path": "gen3/firmware.bin", "offset": 65536 }
         ]
       }
     ]
