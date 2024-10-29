@@ -2,7 +2,7 @@
     "name": "Stepper/Sequencer Gen 3 (date)",
     "builds": [
       {
-        "chipFamily": "ESP32",
+        "chipFamily": "ESP32-C3",
         "improv": false,
         "parts": [
           { "path": "gen3/bootloader.bin", "offset": 32768 },
