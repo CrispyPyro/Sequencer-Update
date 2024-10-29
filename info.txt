@@ -3,3 +3,20 @@ for ESP32-C3
 .pio\build\esp32c3_HWGen3\partitions.bin 0xe000     (decimal: 57344)
 .pio\build\esp32c3_HWGen3\firmware.bin
 .platformio\packages\framework-arduinoespressif32\tools\partitions\boot_app0.bin 0x10000    (decimal: 65536)
+
+
+{
+    "name": "Stepper/Sequencer Gen 3 (date)",
+    "builds": [
+      {
+        "chipFamily": "ESP32-C3",
+        "improv": false,
+        "parts": [
+          { "path": "gen3/bootloader.bin", "offset": 32768 },
+          { "path": "gen3/partitions.bin", "offset": 57344 },
+          { "path": "gen3/boot_app0.bin", "offset": 65536 },
+          { "path": "gen3/firmware.bin", "offset": 65536 }
+        ]
+      }
+    ]
+  }
