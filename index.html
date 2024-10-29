@@ -101,7 +101,7 @@
 
       <div class="footer">
        <!-- <a href="https://github.com/sle118/squeezelite-esp32" -->
-          2 - 32 Channel Stepper/Sequencer by Crispy Pyro</a
+          3 - 32 Channel Stepper/Sequencer by Crispy Pyro</a
         > &mdash;
         Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a>.
     </div>
@@ -109,7 +109,7 @@
       document.querySelectorAll('input[name="type"]').forEach(radio =>
         radio.addEventListener("change", () => {
           const button = document.querySelector('esp-web-install-button');
-          button.manifest = `firmware/manifest_${radio.value}.json?ver=1`;
+          button.manifest = `firmware/manifest_${radio.value}.json?ver=1a`;
           button.classList.remove('invisible');
         }
       ));
