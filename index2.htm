@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<meta content='width=device-width' name='viewport'>
+  <meta name="theme-color" content="#222222">
+  <link rel="shortcut icon" href="favicon.jpg"> 
+  <link rel="stylesheet" href="style.css">
+	<title>GLORB Installer</title>
+  <script
+    type="module"
+    src="https://unpkg.com/esp-web-tools/dist/web/install-button.js?module"
+  ></script>
+</head>
+<!-- <body onload="checkSupported()"> -->
+<img alt="" src="logo.png">
+<div class="main">
+<h2>Welcome to the 32cue Stepper/Sequencer Web Installer!</h2>
+
+<div id="flasher">
+
+<ol>
+  <li>Select the version of the hardware you have from the options below (probably HW Revision 3).</li>
+  <li>Hit Install. A list with available COM ports will apear.</li>
+  <li>TURN OFF YOUR Stepper/Sequencer (it must remain off for the duration of the update process)
+  <li>Plug in your device to a USB port on your computer.<br>Connect to the port that appears in the list.<br>If no new port appears, disconnect the device, hold down the knob on the stepper/sequencer, and reconnect.</li>
+  <li>Press Install and wait for the installation to finish.</li>
+  <li>DISCONNECT THE DEVICE FROM YOUR COMPUTER.</li>
+  <li>Turn on your device and verify the verison that appears when the device boots matches the version you attempted to install.</li>
+</ol><br><br>
+
+  <!-- add new builds here -->
+  <select id="ver" class="btn" onchange="setManifest(); toggleAdditionalOptions();">
+    <optgroup label="GLORB Beta Release">
+      <option 
+        data-ble-sph-81="bin/GLORB_0_14_4-b4/manifest_ble_sph_81.json"
+        data-ble-gma-81="bin/GLORB_0_14_4-b4/manifest_ble_gma_81.json"
+      >GLORB.0.14.4-b4</option>
+      <option 
+        data-ble-sph-81="bin/GLORB_0_14_4-b3/manifest_ble_sph_81.json"
+        data-ble-gma-81="bin/GLORB_0_14_4-b3/manifest_ble_gma_81.json"
+      >GLORB.0.14.4-b3</option>
+      <option 
+        data-ble-sph-81="bin/GLORB_0_14_4-b2/manifest_ble_sph_81.json"
+        data-ble-gma-81="bin/GLORB_0_14_4-b2/manifest_ble_gma_81.json"
+        data-plain-sph-80="bin/GLORB_0_14_4-b2/manifest_sph_80.json"
+        data-plain-sph-81="bin/GLORB_0_14_4-b2/manifest_sph_81.json"
+        data-plain-gma-80="bin/GLORB_0_14_4-b2/manifest_gma_80.json"
+        data-plain-gma-81="bin/GLORB_0_14_4-b2/manifest_gma_81.json"
+        data-ble-sph-80="bin/GLORB_0_14_4-b2/manifest_ble_sph_80.json"
+        data-ble-gma-80="bin/GLORB_0_14_4-b2/manifest_ble_gma_80.json"
+      >GLORB.0.14.4-b2</option>
+      <option 
+        data-ble-sph-81="bin/GLORB_0_14_4-b1/manifest_ble_sph_81.json"
+        data-ble-gma-81="bin/GLORB_0_14_4-b1/manifest_ble_gma_81.json"
+        data-plain-sph-80="bin/GLORB_0_14_4-b1/manifest_sph_80.json"
+        data-plain-sph-81="bin/GLORB_0_14_4-b1/manifest_sph_81.json"
+        data-plain-gma-80="bin/GLORB_0_14_4-b1/manifest_gma_80.json"
+        data-plain-gma-81="bin/GLORB_0_14_4-b1/manifest_gma_81.json"
+        data-ble-sph-80="bin/GLORB_0_14_4-b1/manifest_ble_sph_80.json"
+        data-ble-gma-80="bin/GLORB_0_14_4-b1/manifest_ble_gma_80.json"
+      >GLORB.0.14.4-b1</option>
+    </optgroup>
+  </select><br>
+
+  <div class="radio-toolbar-container" onchange="setManifest()">
+    <div id="version-options" style="display: none;">
+      <div class="radio-toolbar-row">
+        <h3>Version</h3>
+        <div class="radio-toolbar">
+          <input type="radio" id="normal" name="version" value="normal" checked>
+          <label for="normal">Plain</label>
+          <input type="radio" id="ble" name="version" value="ble">
+          <label for="ble">Bluetooth</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="radio-toolbar-row">
+      <h3>Microphone</h3>
+      <div class="radio-toolbar">
+        <input type="radio" id="sph" name="microphone" value="sph" checked>
+        <label for="sph">SPH0645</label>
+        <input type="radio" id="gma" name="microphone" value="gma">
+        <label for="gma">T3902</label>
+      </div>
+    </div>
+
+    <div id="ledmap-options" style="display: none;">
+      <div class="radio-toolbar-row">
+        <h3>Ledmap</h3>
+        <div class="radio-toolbar">
+          <input type="radio" id="ledmap80" name="ledmap" value="80" checked>
+          <label for="ledmap80">Ledmap 80</label>
+          <input type="radio" id="ledmap81" name="ledmap" value="81">
+          <label for="ledmap81">Ledmap 81</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <!-- Add this right before the "Install" button -->
+  <div id="debug-info" style="margin: 10px; font-family: monospace;"></div>
+  <div class="container inst-button">
+    <esp-web-install-button
+      id="inst"
+      manifest=""
+    >
+      <button class="btn" slot="activate">Install</button>
+    </esp-web-install-button><br>
+  </div>
+  <br></brY><br>Powered by <a href="https://esphome.github.io/esp-web-tools/" target="_blank">ESP Web Tools</a><br>
+  <!-- <br><a href="https://github.com/Aircoookie/WLED" target="_blank">GitHub</a>&emsp;<a href="https://kno.wled.ge" target="_blank">kno.wled.ge</a> -->
+  <br><br>
+<script
+  type = "text/javascript"
+  src="script.js"
+></script>
+</body>
+</html>
