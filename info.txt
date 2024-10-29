@@ -20,3 +20,10 @@ for ESP32-C3
       }
     ]
   }
+
+
+
+          { "path": "gen3/bootloader.bin", "offset": 32768 },
+          { "path": "gen3/partitions.bin", "offset": 57344 },
+          { "path": "gen3/boot_app0.bin", "offset": 65536 },
+          { "path": "gen3/firmware_24.10.29.bin", "offset": 0 }
