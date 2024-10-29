@@ -5,7 +5,7 @@
         "chipFamily": "ESP32-C3",
         "improv": false,
         "parts": [
-          { "path": "gen3/bootloader_24.10.29.bin", "offset": 0 },
+          { "path": "gen3/bootloader_24.10.29.bin", "offset": 32768 },
           { "path": "gen3/firmware.bin", "offset": 65536 }
         ]
       }
