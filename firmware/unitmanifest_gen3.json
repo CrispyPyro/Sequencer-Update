@@ -1,0 +1,17 @@
+{
+    "name": "Stepper/Sequencer Gen 3 (2025/01/02)",
+    "version": "2025.01.02A",
+    "new_install_prompt_erase": true,
+    "builds": [
+      {
+        "chipFamily": "ESP32-C3",
+        "improv": false,
+        "parts": [
+          { "path": "common/bootloader.bin", "offset": 0 },
+          { "path": "common/partitions.bin", "offset": 32768 },
+          { "path": "common/boot_app0.bin", "offset": 65536 },
+          { "path": "units/gen3/firmware_25.01.02.bin", "offset": 65536 }
+        ]
+      }
+    ]
+  }

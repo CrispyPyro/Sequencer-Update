@@ -1,0 +1,17 @@
+{
+    "name": "Remote Control Firmware",
+    "version": "2025.01.09",
+    "new_install_prompt_erase": true,
+    "builds": [
+      {
+        "chipFamily": "ESP32-C3",
+        "improv": false,
+        "parts": [
+          { "path": "common/bootloader.bin", "offset": 0 },
+          { "path": "common/partitions.bin", "offset": 32768 },
+          { "path": "common/boot_app0.bin", "offset": 65536 },
+          { "path": "remotes/gen1/firmware.bin", "offset": 65536 }
+        ]
+      }
+    ]
+  }

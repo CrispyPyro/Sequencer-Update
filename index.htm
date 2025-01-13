@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content='width=device-width' name='viewport'>
+    <title>Stepper/Sequencer Firmware Update</title>
+    <link rel="stylesheet" href="style.css">
+    <meta
+      name="description"
+      content="Easily allow users to install firmware from the web."
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="color-scheme" content="dark light" />
+    <script type="module" src="https://unpkg.com/esp-web-tools@10.0.1/dist/web/install-button.js?module"></script>
+  </head>
+  <body>
+    <img alt="" src="logo.png">
+    <div class="main">
+    <h2>Welcome to the the Web Installer<br>for the 32cue Stepper/Sequencer and Remote Control</h2>
+    
+    <div id="flasher">
+    
+    <ol>
+        <li>Select the version of the hardware you have from the options below (probably HW Revision 3).<br>IMPORTANT: The HW revision is displayed on the screen at boot time. Installing the incorrect firmware for your HW Revision may brick your device.</li></li>
+        <li>Hit Install. A list with available COM ports will apear.</li>
+        <li>TURN OFF YOUR DEVICE (Stepper/Sequencer or Remote Control). It must remain off for the duration of the update process.
+        <li>Plug in your device to a USB port on your computer (you should only have one device connected at a time).<br>Connect to the port that appears in the list.<br>If no new port appears, disconnect the device, hold down the knob on the stepper/sequencer, and reconnect.</li>
+        <li>Press Install and wait for the installation to finish.</li>
+        <li>DISCONNECT THE DEVICE FROM YOUR COMPUTER.</li>
+        <li>Turn on your device and verify the verison that appears when the device boots matches the version you attempted to install.</li>
+    </ol><br><br>
+
+    <div class="content">
+        <p></p>
+        <div style="display: flex; gap: 50px;">
+          <div data-type="unit">
+            <p>Stepper/Sequencer hardware version:</p>
+            <ul class="radios">
+              <li>
+                <label><input type="radio" name="type" value="gen3" /> Revision 3 (latest)</label>
+              </li>
+              <li>
+                <label><input type="radio" name="type" value="gen2" /> Revision 2</label>
+              </li>
+              <li>
+                <label><input type="radio" name="type" value="gen1" /> Revision 1</label>
+              </li>
+            </ul>
+          </div>
+          <div data-type="remote">
+            <p>Remote Control</p>
+            <ul class="radios">
+              <li>
+                <label><input type="radio" name="type" value="gen1" /> Revision 1</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <p class="button-row" align="center">
+        <esp-web-install-button class="invisible"></esp-web-install-button>
+        <a id="download-link" href="#" style="display: none; margin-top: 10px;" download>Download Firmware</a>
+        <span id="error-message" style="display: none; color: red; margin-top: 10px;">No firmware available for this version.</span>
+      </p>
+      <!-- <p id="firmware-version" style="display: none; margin-top: 10px; font-weight: bold;">Version:</p> -->
+    </div>
+
+      <div class="footer">
+        <br>
+        Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a>.
+    </div>
+    <script>
+        async function fetchManifest(manifestUrl) {
+            try {
+            const response = await fetch(manifestUrl);
+            if (!response.ok) throw new Error('Failed to load manifest');
+            const manifest = await response.json();
+            const firmwarePath = manifest.builds[0].parts.find(part => part.path.includes('firmware')).path;
+            const version = manifest.version || 'unknown'; // Assuming the version is in 'version' field
+            // return firmwarePath;
+            return { firmwarePath, version };
+            } catch (error) {
+            console.error('Error fetching manifest:', error);
+            return null;
+            }
+        }
+
+        document.querySelectorAll('input[name="type"]').forEach(radio => {
+              radio.addEventListener("change", async () => {
+                const button = document.querySelector('esp-web-install-button');
+                const downloadLink = document.getElementById('download-link');
+                const errorMessage = document.getElementById('error-message');
+                // const versionElement = document.getElementById('firmware-version');
+
+                downloadLink.style.display = 'none';
+                // versionElement.style.display = 'none';
+                errorMessage.style.display = 'none';
+
+                // Determine if the selected radio is from the "unit" or "remote" section
+                const section = radio.closest('[data-type]').getAttribute('data-type');
+                const isRemote = section === "remote"; // Check if it belongs to the "remote" section
+
+                // Update the manifest for the button
+                const manifestUrl = isRemote
+                  ? `firmware/remotemanifest_${radio.value}.json` // Right column pattern
+                  : `firmware/unitmanifest_${radio.value}.json`; // Left column pattern
+
+                // Fetch the firmware file path from the manifest
+                const { firmwarePath, version } = await fetchManifest(manifestUrl);
+
+                if (firmwarePath) {
+                  button.manifest = manifestUrl;
+                  button.classList.remove('invisible');
+                  downloadLink.href = `firmware/${firmwarePath}`;
+                  downloadLink.style.display = 'block';
+
+                  downloadLink.textContent = `Download Firmware ${version}`;
+
+                  // Show the version in the version element
+                  // versionElement.style.display = 'block';
+                  // versionElement.textContent = `Version: ${version}`;
+
+                  errorMessage.style.display = 'none';
+
+                } else {
+                  button.classList.add('invisible');
+                  downloadLink.style.display = 'none';
+                  // versionElement.style.display = 'none';
+                  errorMessage.style.display = 'block';
+                }
+              });
+            });
+    </script>
+  </body>
+</html>

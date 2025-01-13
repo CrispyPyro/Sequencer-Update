@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Stepper/Sequencer Firmware Update</title>
+    <meta content='width=device-width' name='viewport'>
+    <title>old_Stepper/Sequencer Firmware Update</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <meta
       name="description"
       content="Easily allow users to install firmware from the web."
@@ -16,6 +18,16 @@
         padding: 0;
         margin: 0;
         line-height: 1.4;
+        /* text-align: center; */
+      }
+      img {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        display: block;
+        margin: auto auto auto; /*-80px auto -120px; */
+        animation: fi 1s;
+        overflow: hidden;
       }
       .content {
         max-width: 600px;
@@ -80,13 +92,15 @@
   <body>
     <img alt="" src="logo.png">
     <div class="content">
-      <h1>32 Channel Stepper/Sequencer Firmware Update</h1>
-      <p>This is a prototype</p>
+      <!-- <h1>32 Channel Stepper/Sequencer Firmware Update</h1> -->
+      <h1>Welcome to the 32 cue Stepper/Sequencer Web Installer</h1>
+      <!-- <h2>Welcome to the 32cue Stepper/Sequencer Web Installer!</h2> -->
+      <!-- <p>This is a prototype</p> -->
       <p></p>
-      <p>Select your version</p>
+      <p>Select your hardware version:</p>
       <ul class="radios">
         <li>
-          <label><input type="radio" name="type" value="gen3a" /> Revision 3 (latest)</label>
+          <label><input type="radio" name="type" value="gen3" /> Revision 3 (latest)</label>
         </li>
         <li>
           <label><input type="radio" name="type" value="gen2" /> Revision 2</label>
@@ -101,7 +115,7 @@
 
       <div class="footer">
        <!-- <a href="https://github.com/sle118/squeezelite-esp32" -->
-          3 - 32 Channel Stepper/Sequencer by Crispy Pyro</a
+          32 Channel Stepper/Sequencer by Crispy Pyro</a
         > &mdash;
         Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a>.
     </div>
@@ -109,7 +123,7 @@
       document.querySelectorAll('input[name="type"]').forEach(radio =>
         radio.addEventListener("change", () => {
           const button = document.querySelector('esp-web-install-button');
-          button.manifest = `firmware/manifest_${radio.value}.json?ver=1a`;
+          button.manifest = `firmware/manifest_${radio.value}.json`;
           button.classList.remove('invisible');
         }
       ));

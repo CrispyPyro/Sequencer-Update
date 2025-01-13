@@ -69,25 +69,6 @@ img {
     animation: fi 1s;
     overflow: hidden;
 }
-.content {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 12px;
-    
-  }
-.content pre {
-    max-width: 100%;
-    overflow-y: scroll;
-  }
-.invisible {
-visibility: hidden;
-}
-.hidden {
-    display: none;
-  }
-esp-web-install-button[install-unsupported] {
-visibility: inherit;
-}
 
 @keyframes fi {
     from {
@@ -123,26 +104,6 @@ li::marker {
 li {
     margin: 5px;
 }
-
-table {
-    /* font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Ubuntu, sans-serif;
-    padding: 0;
-    margin: 0; */
-    line-height: 1.4;
-    border-spacing: 0;
-  }
-  td {
-    padding: 8px;
-    border-bottom: 1px solid #ccc;
-  }
-  .radios li {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    line-height: 2em;
-    text-align: left;
-  }
 
 .container {
     width: 90%;
