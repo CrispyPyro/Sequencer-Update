@@ -16,25 +16,42 @@
   <body>
     <img alt="" src="logo.png">
     <div class="main">
-    <h2>Welcome to the the Web Installer<br>for the 32cue Stepper/Sequencer and Remote Control</h2>
+    <h2>Welcome to the the firmware update site<br>for the 32cue Stepper/Sequencer and Remote Control</h2>
     
     <div id="flasher">
-    
-    <ol>
-        <li>Select the version of the hardware you have from the options below (probably HW Revision 3).<br>IMPORTANT: The HW revision is displayed on the screen at boot time. Installing the incorrect firmware for your HW Revision may brick your device.</li></li>
-        <li>Hit Install. A list with available COM ports will apear.</li>
-        <li>TURN OFF YOUR DEVICE (Stepper/Sequencer or Remote Control). It must remain off for the duration of the update process.
-        <li>Plug in your device to a USB port on your computer (you should only have one device connected at a time).<br>Connect to the port that appears in the list.<br>If no new port appears, disconnect the device, hold down the knob on the stepper/sequencer, and reconnect.</li>
-        <li>Press Install and wait for the installation to finish.</li>
-        <li>DISCONNECT THE DEVICE FROM YOUR COMPUTER.</li>
-        <li>Turn on your device and verify the verison that appears when the device boots matches the version you attempted to install.</li>
-    </ol><br><br>
+      <br>
+      <h3>Instructions</h3>
+      <ul style="list-style-type:none;">
+      <li>Start by selecting the version of the hardware you have from the options below.
+        <br><b>IMPORTANT: The HW revision and current firmware version are displayed on the screen at boot time. Installing the incorrect firmware may have unintended consequences.</b></li>
+      <br>
+      <li>To update the device using <b>WiFi:</b></li>
+        <ol>
+          <li>Select the download link below to download the firmware file to your mobile phone/tablet.</li>
+          <li>Put the device in Firmware Update mode via the menu.</li>
+          <li>Connect to the WiFi network shown on the device screen. After connecting, the firmware update page should display automatically.<br>If it does not, try opening your browser and navigating to any website.</li>
+          <li>Select the previously downloaded file and click install.</li>
+          <li>Wait for the installation to finish. The device will automatically reboot.</li>
+          <li>Verify the verison shown on the device during bootup matches the version you attempted to install.</li>
+        </ol><br><br>
+      <li>To update the device by plugging it <b>directly into your computer:</b></li>
+        <ol>
+          <li><b>IMPORTANT:</b> Be sure to use a USB-C cable capable of both data and power. If you attempt the below and don't see the device in step 4 below, try using a different cable.</li>
+          <li><b>IMPORTANT: TURN OFF YOUR DEVICE before plugging it into the computer to update. </b>It must remain off for the duration of the update process.
+          <li>Prior to plugging in your device, click the Connect button below. A list with available COM ports will apear.<br>Doing this first makes it easier to identify which port your device is connected to.</li>
+          <li>Plug in your device to a USB port on your computer (you should only have one device connected at a time).
+            <br>Connect to the port that appears in the list.<br>If no new port appears, disconnect the device, hold down the knob on the stepper/sequencer, and reconnect.<br>Do not release the knob until the update process has begun.</li>
+          <li>Press Install and wait for the installation to finish.</li>
+          <li>DISCONNECT THE DEVICE FROM YOUR COMPUTER.</li>
+          <li>Turn on your device and verify the verison shown on the device during bootup matches the version you attempted to install.</li>
+        </ol>
+      </ul><br><br>
 
     <div class="content">
         <p></p>
         <div style="display: flex; gap: 50px;">
           <div data-type="unit">
-            <p>Stepper/Sequencer hardware version:</p>
+            <p>Stepper/Sequencer</p>
             <ul class="radios">
               <li>
                 <label><input type="radio" name="type" value="gen3" /> Revision 3 (latest)</label>
@@ -67,6 +84,7 @@
       <div class="footer">
         <br>
         Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a>.
+        <br>
     </div>
     <script>
         async function fetchManifest(manifestUrl) {

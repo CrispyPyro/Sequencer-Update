@@ -1,6 +1,6 @@
 {
-    "name": "Stepper/Sequencer Gen 3 (2025/01/02)",
-    "version": "2025.01.02A",
+    "name": "Stepper/Sequencer Gen 3",
+    "version": "2025.02.04",
     "new_install_prompt_erase": true,
     "builds": [
       {
@@ -10,7 +10,7 @@
           { "path": "common/bootloader.bin", "offset": 0 },
           { "path": "common/partitions.bin", "offset": 32768 },
           { "path": "common/boot_app0.bin", "offset": 65536 },
-          { "path": "units/gen3/firmware_25.01.02.bin", "offset": 65536 }
+          { "path": "units/gen3/firmware_25.02.04.bin", "offset": 65536 }
         ]
       }
     ]
